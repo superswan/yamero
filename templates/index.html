@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="jumbotron">
+  <h1>YAMERO!</h1>
+  <h2>( やめろ )</h2>
+    <p class="lead">Max upload size is 999&nbsp;PiB, read the <a href="faq.html"><abbr title="Frequently asked questions">FAQ</abbr></a></p>
+  {% include 'upload.html' %}
+{% with messages = get_flashed_messages %}
+    {% if messages %}
+        {{ message }}
+    {% endif %}
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=["upload"]) %}
+           {% if messages %}
+              {% for message in messages %}
+             <p><a href="{{ message }}">{{ message }}</a></p>
+              {% endfor %}
+           {% endif %}
+        {% endwith %}
+    </div>
+{% include 'nav.html' %}
+{% endblock %}
